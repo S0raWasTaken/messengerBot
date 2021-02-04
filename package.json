@@ -1,0 +1,27 @@
+{
+  "name": "facebook.js",
+  "version": "0.0.1",
+  "description": "facebook NodeJS api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/s0rawastaken/facebookjs.git"
+  },
+  "keywords": [
+    "facebook",
+    "messenger",
+    "bot",
+    "nodejs",
+    "api"
+  ],
+  "author": "s0ra",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
