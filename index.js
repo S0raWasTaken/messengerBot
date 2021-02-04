@@ -5,6 +5,7 @@ const app = express().use(bodyParser.json());
 const Message = require("./message");
 const Client = require("./client");
 const client = new Client();
+const {date} = require("./handler");
 
 app.listen(process.env.PORT);
 app.post("/webhook", (req, res) => {
@@ -43,7 +44,8 @@ app.get("/webhook", (req, res) => {
         res.sendStatus(403);
     }
 });
-console.log("uhhh");
+console.log("[INFO: "+date+"] Websocket started");
+console.log("[INFO: "+date+"] Awaiting for API response");
 
 module.exports = client;
 require("./bot");
