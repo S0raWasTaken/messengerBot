@@ -1,5 +1,6 @@
 const {EventEmitter} = require("events");
 const childProcess = require("child_process");
+const {date} = require("./handler");
 
 class Client extends EventEmitter {
     constructor() {
@@ -11,13 +12,11 @@ class Client extends EventEmitter {
      * @param {String} token
      * Needs to be a valid page access token
      */
-
     login(token) {
         this.PAGE_ACCESS_TOKEN = token;
     }
 
     /**
-     * 
      * @param {String} message 
      * the message String to be sent
      * @param {String} messaging_type 
@@ -27,7 +26,7 @@ class Client extends EventEmitter {
      */
     sendMessage(message, messaging_type, psid) {
         if (this.PAGE_ACCESS_TOKEN.length < 1) {
-            return console.error("INVALID_PAGE_ACCESS_TOKEN");
+            return console.error("[ERROR: "+date+"] INVALID_PAGE_ACCESS_TOKEN");
         }
         if (isNaN(parseInt(psid))) {
             return console.error("INVALID_PSID");
@@ -35,18 +34,20 @@ class Client extends EventEmitter {
         const messageTypes = ["RESPONSE", "UPDATE", "MESSAGE_TAG"];
 
         if (message.length < 1) {
-            return console.error("MESSAGE_TOO_SHORT");
+            return console.error("[ERROR: "+date+"] MESSAGE_TOO_SHORT");
         }
         if (!messageTypes.find(type => type === messaging_type)) {
-            return console.error("INVALID_MESSAGE_TYPE");
+            return console.error("[ERROR: "+date+"]INVALID_MESSAGE_TYPE");
         }
         const api = `https://graph.facebook.com/v9.0/me/messages?access_token=${this.PAGE_ACCESS_TOKEN}`;
 
         const APIresponse = childProcess.exec(`curl -X POST -H "Content-type: application/json" -d '{\
             "recipient": {"id":"${psid}"}, "message":{"text":"${message}"},\
             }' "${api}"`, (error, stdout) => {
-            if (error) throw error;
-            if (stdout) return stdout;
+            if (error) 
+                return console.error("[ERROR: "+date+"] "+error.message+"\n"+error.stack);
+            if (stdout) 
+                return stdout;
         });
         return APIresponse;
     }
