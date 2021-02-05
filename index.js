@@ -1,5 +1,5 @@
 require("dotenv").config();
-const client = require(".");
+const client = require("./app");
 const {date} = require("./handler");
 client.login(process.env.PAGE_ACCESS_TOKEN);
 
