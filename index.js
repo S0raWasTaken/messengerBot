@@ -1,6 +1,7 @@
 require("dotenv").config();
 const client = require("./app");
 const {date} = require("./handler");
+const filter = require("./filter");
 client.login(process.env.PAGE_ACCESS_TOKEN);
 
 client.on("ready", () => {
@@ -8,5 +9,9 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
-    console.log(message);
+    console.log("[INFO: "+date+"] Received message from API:\n"+message.content);
+    const args = message.content.trim().split(/ +/g);
+    if (filter.read(args)) return;
+
+    
 });
