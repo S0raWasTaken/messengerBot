@@ -10,6 +10,8 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
+    if (ignored.has(message.author.id)) return;
+
     console.log("[INFO: "+date+"] Received message from API:\n"+message.content);
     const args = message.content.trim().split(/ +/g);
     if (filter.read(args)) return ignored.add(message.author.id);
