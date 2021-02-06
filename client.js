@@ -39,7 +39,8 @@ class Client extends EventEmitter {
         if (!messageTypes.find(type => type === messaging_type)) {
             return console.error("[ERROR: "+date+"]INVALID_MESSAGE_TYPE");
         }
-        const api = `https://graph.facebook.com/v9.0/me/messages?access_token=${this.PAGE_ACCESS_TOKEN}`;
+        // Changed to my test app in localhost
+        const api = /*`https://graph.facebook.com/v9.0/me/messages?access_token=${this.PAGE_ACCESS_TOKEN}`*/ "localhost:25576";
 
         const APIresponse = childProcess.exec(`curl -X POST -H "Content-type: application/json" -d '{\
             "recipient": {"id":"${psid}"}, "message":{"text":"${message}"},\
