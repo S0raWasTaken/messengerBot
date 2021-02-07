@@ -38,6 +38,8 @@ exports.analyze = (message, args) => {
     }
 }
 
+exports.checkDB = () => {}; //TODO
+
 /**
  * @param {String} index 
  */
