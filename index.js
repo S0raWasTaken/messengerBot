@@ -12,7 +12,7 @@ client.on("message", message => {
     if (ignored.has(message.author.id)) return;
 
     console.log("[INFO: "+date+"] Received message from API: "+message.content);
-    const args = message.content.trim().toLowerCase().split(/ +/g);
+    const args = message.content.trim().toLowerCase().replace(/?+/, "").split(/ +/g);
     if (filter.read(args)) {
         console.log(
             "[INFO: "+date
@@ -22,5 +22,5 @@ client.on("message", message => {
     }
     
     const analysis = analyze(message, args);
-    
+
 });
