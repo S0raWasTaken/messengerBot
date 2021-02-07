@@ -22,7 +22,7 @@ class Message extends Client {
      * @returns {JSON}
      */
     reply(content) {
-        return this.sendMessage(content, "RESPONSE", this.sender.id);
+        return this.sendMessage(content, this.author.id);
     }
 }
 
