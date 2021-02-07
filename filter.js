@@ -4,6 +4,6 @@ const {readFileSync} = require("fs");
  * @return {String}
  */
 exports.read = (args) => {
-    const ignored = readFileSync("./.filter").toString().split(/ +/g);
+    const ignored = readFileSync("./.filter").toString().replace(/\n+/g, "").split(/ +/g);
     return ignored.find(i => args.find(a => a == i.toLowerCase()));
 };
