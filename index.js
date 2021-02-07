@@ -5,7 +5,10 @@ const filter = require("./filter");
 const ignored = new Set(); // temporary
 
 client.on("ready", () => {
-    console.log("[INFO: "+date()+"] Bot logged in!");
+    console.log(`[INFO: ${date()}] API replied`);
+    setTimeout(() => {
+        console.log("[INFO: "+date()+"] Bot logged in!");
+    }, 1000);
 });
 
 client.on("message", message => {
