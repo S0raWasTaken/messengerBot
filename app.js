@@ -44,7 +44,7 @@ app.get("/webhook", (req, res) => {
         res.sendStatus(403);
     }
 });
-console.log("[INFO: "+date+"] Websocket started");
-console.log("[INFO: "+date+"] Awaiting for API response");
+console.log("[INFO: "+date()+"] Websocket started");
+console.log("[INFO: "+date()+"] Awaiting for API response");
 
 module.exports = client;
