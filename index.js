@@ -1,9 +1,8 @@
 require("dotenv").config();
 const client = require("./app");
-const {date} = require("./handler");
+const {date, analyze} = require("./handler");
 const filter = require("./filter");
 const ignored = new Set();
-client.login(process.env.PAGE_ACCESS_TOKEN);
 
 client.on("ready", () => {
     console.log("[INFO: "+date+"] Bot logged in!");
@@ -13,7 +12,7 @@ client.on("message", message => {
     if (ignored.has(message.author.id)) return;
 
     console.log("[INFO: "+date+"] Received message from API: "+message.content);
-    const args = message.content.trim().split(/ +/g);
+    const args = message.content.trim().toLowerCase().split(/ +/g);
     if (filter.read(args)) {
         console.log(
             "[INFO: "+date
@@ -22,5 +21,5 @@ client.on("message", message => {
         return ignored.add(message.author.id);
     }
     
-    
+    analyze(message, args);
 });
