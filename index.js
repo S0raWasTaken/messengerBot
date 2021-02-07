@@ -21,5 +21,6 @@ client.on("message", message => {
         return ignored.add(message.author.id);
     }
     
-    analyze(message, args);
+    const analysis = analyze(message, args);
+    
 });
