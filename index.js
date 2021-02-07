@@ -2,7 +2,7 @@ require("dotenv").config();
 const client = require("./app");
 const {date, analyze} = require("./handler");
 const filter = require("./filter");
-const ignored = new Set();
+const ignored = new Set(); // temporary
 
 client.on("ready", () => {
     console.log("[INFO: "+date+"] Bot logged in!");
