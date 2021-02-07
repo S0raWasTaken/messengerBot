@@ -12,9 +12,15 @@ client.on("ready", () => {
 client.on("message", message => {
     if (ignored.has(message.author.id)) return;
 
-    console.log("[INFO: "+date+"] Received message from API:\n"+message.content);
+    console.log("[INFO: "+date+"] Received message from API: "+message.content);
     const args = message.content.trim().split(/ +/g);
-    if (filter.read(args)) return ignored.add(message.author.id);
-
+    if (filter.read(args)) {
+        console.log(
+            "[INFO: "+date
+            +"] Messages from this author will be successfully ignored in the future"
+        );
+        return ignored.add(message.author.id);
+    }
+    
     
 });
