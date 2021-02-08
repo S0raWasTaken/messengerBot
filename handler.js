@@ -1,4 +1,5 @@
 const colors = require("colors");
+const db = require("mariadb");
 
 exports.date = () => { return new Date().toISOString().split(".")[0].split(/T+/g)[1]; }
 
@@ -37,7 +38,9 @@ exports.analyze = (message, args) => {
     }
 }
 
-exports.checkDB = () => {}; //TODO
+exports.checkDB = () => {
+
+}; //TODO
 
 /**
  * @param {String} index 
